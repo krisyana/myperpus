@@ -17,13 +17,14 @@ class HomeController extends Controller
     public function index()
     {
         $search = request()->query('search');
+        $featured = Book::where('featured', '=', 1)->paginate(3);
         if ($search) {
             $books = Book::where('title', 'like', "%{$search}%")->orWhere('author', 'LIKE', "%{$search}%")->paginate(15);
         } else {
             $books = Book::paginate(15);
         }
 
-        return view('welcome', ['books' => $books]);
+        return view('welcome', ['books' => $books, 'featureds' => $featured]);
     }
 
     public function show($id)

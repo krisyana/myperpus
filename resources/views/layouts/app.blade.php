@@ -71,7 +71,16 @@
 
             {{ $slot }}
         </main>
+
     </div>
+    <footer class="footer mt-auto py-3 bg-light">
+        <p class="text-center">
+            Perpustakaan built by Krisna
+        </p>
+        <p class="text-center">
+            <a href="#">Back to top</a>
+        </p>
+    </footer>
     <!-- Scripts -->
     <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"

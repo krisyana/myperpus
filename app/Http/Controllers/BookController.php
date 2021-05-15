@@ -35,7 +35,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books.create', ['categories' => Category::paginate(10)]);
+        return view('books.create', ['categories' => Category::all()]);
     }
 
     /**

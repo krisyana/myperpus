@@ -8,76 +8,45 @@
     </x-slot>
     <!-- Swiper -->
     <div class="swiper-container mySwiper">
+        <h3 class="pb-4 mb-4 mt-2 fst-italic border-bottom display-6 text-center">Featured Books</h3>
         <div class="swiper-wrapper">
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            <div class="swiper-slide">Slide 4</div>
-            <div class="swiper-slide">Slide 5</div>
-            <div class="swiper-slide">Slide 6</div>
-            <div class="swiper-slide">Slide 7</div>
-            <div class="swiper-slide">Slide 8</div>
-            <div class="swiper-slide">Slide 9</div>
+            @foreach ($featureds as $featured)
+                <div class="swiper-slide">
+                    <div class="col-md-6">
+                        <div
+                            class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                <strong class="d-inline-block mb-2 text-primary">{{ $featured->title }}</strong>
+                                <h3 class="mb-0">Featured Book</h3>
+                                <div class="mb-1 text-muted">{{ $featured->auhtor }}</div>
+                                <p class="card-text mb-auto">{{ $featured->description }}</p>
+                                <a href="books/show/{{ $featured->id }}" class="stretched-link">See book</a>
+                            </div>
+                            <div class="col-auto d-none d-lg-block">
+                                <img src="{{ $featured->image }}" alt="{{ $featured->title }}" width="200"
+                                    height="250">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            @endforeach
+
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
     </div>
     <div class="container">
-        <div class="row my-2">
-            <div class="col-md-6">
-                <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary">World</strong>
-                        <h3 class="mb-0">Featured post</h3>
-                        <div class="mb-1 text-muted">Nov 12</div>
-                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural
-                            lead-in to additional content.</p>
-                        <a href="#" class="stretched-link">Continue reading</a>
-                    </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
-                            role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-                            focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                dy=".3em">Thumbnail</text>
-                        </svg>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-success">Design</strong>
-                        <h3 class="mb-0">Post title</h3>
-                        <div class="mb-1 text-muted">Nov 11</div>
-                        <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to
-                            additional content.</p>
-                        <a href="#" class="stretched-link">Continue reading</a>
-                    </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
-                            role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-                            focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                dy=".3em">Thumbnail</text>
-                        </svg>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h2 class="pb-4 mb-4 mt-2 fst-italic border-bottom display-6">Book Catalog</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-4">
             @forelse ($books as $book)
                 <div class="col d-flex align-items-stretch">
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="{{ $book->image }}" alt="{{ $book->title }}">
+                                <a href="{{ route('books.show', $book->id) }}">
+                                    <img src="{{ $book->image }}" alt="{{ $book->title }}">
+                                </a>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body d-flex flex-column">
@@ -101,14 +70,7 @@
         {{ $books->appends(['search' => request()->query('search')])->links() }}
 
     </div>
-    <footer class="">
-        <p class="text-center">
-            Perpustakaan built by Krisna
-        </p>
-        <p class="text-center">
-            <a href="#">Back to top</a>
-        </p>
-    </footer>
+
 
     @section('scripts')
         <!-- Swiper JS -->
@@ -116,6 +78,13 @@
         <!-- Initialize Swiper -->
         <script>
             var swiper = new Swiper(".mySwiper", {
+                autoplay: {
+                    delay: 5000,
+                },
+                coverflowEffect: {
+                    rotate: 30,
+                    slideShadows: false,
+                },
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev",
