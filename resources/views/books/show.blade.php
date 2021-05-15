@@ -24,6 +24,16 @@
                             </li>
                             <li class="list-group-item">
                                 <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Featured</div>
+                                    @if ($book->featured == 1)
+                                        <span class="badge bg-primary">Featured</span>
+                                    @else
+                                        <span class="badge bg-danger">Not Featured</span>
+                                    @endif
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="ms-2 me-auto">
                                     <div class="fw-bold">Author</div>
                                     {{ $book->author }}
                                 </div>

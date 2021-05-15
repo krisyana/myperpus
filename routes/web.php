@@ -19,12 +19,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('library.index');
+Route::get('/category/{category}', [HomeController::class, 'category'])->name('library.category');
 
-Route::prefix('library')->group(function () {
-    // Route::get('/index', [HomeController::class, 'index'])->name('library.index');
-    Route::get('/show/{book}', [HomeController::class, 'show'])->name('library.show');
-    Route::get('/categories/{category}', [HomeController::class, 'category'])->name('library.category');
-});
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -20,7 +20,7 @@
                                 <h3 class="mb-0">Featured Book</h3>
                                 <div class="mb-1 text-muted">{{ $featured->auhtor }}</div>
                                 <p class="card-text mb-auto">{{ $featured->description }}</p>
-                                <a href="books/show/{{ $featured->id }}" class="stretched-link">See book</a>
+                                <a href="books/{{ $featured->id }}" class="stretched-link">See book</a>
                             </div>
                             <div class="col-auto d-none d-lg-block">
                                 <img src="{{ $featured->image }}" alt="{{ $featured->title }}" width="200"
@@ -37,7 +37,10 @@
         <div class="swiper-button-prev"></div>
     </div>
     <div class="container">
-        <h2 class="pb-4 mb-4 mt-2 fst-italic border-bottom display-6">Book Catalog</h2>
+        <h2 class="pb-4 mb-4 mt-2 fst-italic border-bottom display-6">Book Catalog @if (isset($category))
+                with Category {{ $category->name }}
+            @endif
+        </h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-4">
             @forelse ($books as $book)
                 <div class="col d-flex align-items-stretch">

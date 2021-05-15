@@ -35,9 +35,11 @@ class HomeController extends Controller
     public function category($id)
     {
         $category = Category::findorFail($id);
-        return view('library.category')
+        $featured = Book::where('featured', '=', 1)->paginate(3);
+        return view('welcome')
             ->with('category', $category)
-            ->with('book', $category->book()->searched()->simplePaginate(3))
-            ->with('categories', Category::all());
+            ->with('books', $category->books()->searched()->paginate(10))
+            ->with('categories', Category::all())
+            ->with('featureds', $featured);
     }
 }
