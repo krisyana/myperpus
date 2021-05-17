@@ -84,11 +84,12 @@
                                 value="{{ isset($book) ? $book->sum : '' }}" required />
                         </div>
 
-                        <!-- Image -->
-                        <div class="mt-4">
-                            <x-label for="image" :value="__('Image')" />
-                            <x-input id="image" class="block mt-1 w-50%" type="file" name="image"
-                                :value="old('image')" />
+                      <!-- Image -->
+                        <div>
+                            <x-label for="image" :value="__('IMage Url')" />
+
+                            <x-input id="image" class="block mt-1 w-full" type="text" name="image"
+                                value="{{ isset($book) ? $book->image : '' }}" required autofocus />
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
