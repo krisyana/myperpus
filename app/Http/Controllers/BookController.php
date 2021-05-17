@@ -46,7 +46,6 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $image = $request->image->store('books');
         $book = Book::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -55,7 +54,9 @@ class BookController extends Controller
             'image' => $image,
             'featured' => $request->featured,
             'publisher' => $request->publisher,
-            'sum' => $request->sum
+            'sum' => $request->sum,
+            'image' = $request->image;
+
         ]);
         if ($request->categories) {
             $book->categories()->attach($request->categories);
@@ -104,7 +105,8 @@ class BookController extends Controller
             'image' => $request->image,
             'featured' => $request->featured,
             'publisher' => $request->publisher,
-            'sum' => $request->sum
+            'sum' => $request->sum,
+            'image' = $request->image;
         ]);
 
         session()->flash('success', 'Book updated successfully.');
