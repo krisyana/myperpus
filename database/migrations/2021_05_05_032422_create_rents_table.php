@@ -16,9 +16,8 @@ class CreateRentsTable extends Migration
         Schema::create('rents', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('book_id');
-            $table->integer('user_id');
-            $table->set('status', ['done', 'pending', 'renting']);
+            $table->integer('book_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->date('rent_at');
             $table->date('return_at');
         });
