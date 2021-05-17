@@ -31,6 +31,7 @@ class StoreBookRequest extends FormRequest
             'description' => 'required',
             'featured' => 'required|digits_between:0,1',
             'sum' => 'required',
+            'image' => 'required',
         ];
     }
 }
