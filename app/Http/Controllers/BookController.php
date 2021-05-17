@@ -53,7 +53,7 @@ class BookController extends Controller
             'featured' => $request->featured,
             'publisher' => $request->publisher,
             'sum' => $request->sum,
-            'image' => $request->image;
+            'image' => $request->image,
 
         ]);
         if ($request->categories) {
@@ -103,7 +103,7 @@ class BookController extends Controller
             'featured' => $request->featured,
             'publisher' => $request->publisher,
             'sum' => $request->sum,
-            'image' => $request->image;
+            'image' => $request->image,
         ]);
 
         session()->flash('success', 'Book updated successfully.');
